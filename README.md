@@ -12,6 +12,7 @@ spam-detector/
 │   ├── main.py           # FastAPI app (API endpoints)
 │   ├── model.py          # Loads the Hugging Face model
 │   ├── schemas.py        # Defines request/response schemas
+│   ├── telegram_bot.py   # Connects the telegram bot to the project
 │── k8s/                  # Kubernetes Deployment Configs
 │   ├── deployment.yaml   # Deployment for the API
 │   ├── service.yaml      # Exposes the API as a service
@@ -51,14 +52,17 @@ kubectl get svc spam-detector-service
 ## 🔥 API Usage
 ### **4. Test the API**
 ```sh
-curl -X 'POST' \
-  'http://<EXTERNAL-IP>/predict/' \
+Postman 'POST' \
+  localhost:8000/predict \
   -H 'Content-Type: application/json' \
   -d '{"text": "Win a free iPhone now!"}'
 ```
 ### **Example Response:**
 ```json
-{"label": "spam", "score": 0.98}
+{
+    "label": "Spam",
+    "score": 0.9997568726539612
+}
 ```
 
 ---
