@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spam-detector-deployment
+spec:
+  replicas: 2  # Number of pods
+  selector:
+    matchLabels:
+      app: spam-detector
+  template:
+    metadata:
+      labels:
+        app: spam-detector
+    spec:
+      containers:
+      - name: spam-detector
+        image: your-dockerhub-username/spam-detector:latest
+        ports:
+        - containerPort: 8000
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"

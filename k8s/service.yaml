@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: spam-detector-service
+spec:
+  type: LoadBalancer  # Use ClusterIP if running inside a cluster
+  selector:
+    app: spam-detector
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
